@@ -1,0 +1,41 @@
+.header {
+  /* border: 1px aqua solid; */
+  text-align: center;
+  max-width: 880px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.header__logo {
+  width: 120px;
+  margin: 0;
+  padding-left: 15px;
+  padding-bottom: 50px;
+  padding-top: 5px;
+  /* border: 1px red solid; */
+  cursor: pointer;
+}
+.header__title {
+  font-family: "IstokWeb", sans-serif;
+  font-size: 18px;
+}
+
+.header__line {
+  /* Line */
+  position: absolute;
+  width: 80%;
+  height: 0;
+  left: 10vw;
+  top: 100px;
+  opacity: 0.7;
+  border: 1px solid rgb(162, 236, 236);
+}
+
+@media screen AND (max-width: 400px) {
+  .header__logo {
+    content: url("../images/LogoPeq.png");
+    width: 79px;
+    height: 16;
+  }
+}

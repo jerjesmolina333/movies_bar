@@ -1,0 +1,104 @@
+.carousel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.carousel__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.carousel__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  font-size: 30px;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  z-index: 10;
+}
+
+.carousel__button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carousel__button--prev {
+  left: 10px;
+}
+
+.carousel__button--next {
+  right: 10px;
+}
+
+.carousel__indicators {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.carousel__indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid aqua;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  padding: 0;
+}
+
+.carousel__indicator--active {
+  background-color: aqua;
+}
+
+.carousel__indicator:hover {
+  background-color: rgba(0, 255, 255, 0.5);
+}
+
+.cardContainer {
+  /* border: 1px solid aqua; */
+  /* width: 320px; */
+  /* margin: 10px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.movie__container {
+  /* border: 1px solid violet; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+.movie__title {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-align: center;
+}
+.cardsList__item {
+  list-style: none;
+}
+.movie__image {
+  width: 150px;
+  height: auto;
+  border-radius: 10px;
+  background-color: azure;
+  align-content: center;
+}
