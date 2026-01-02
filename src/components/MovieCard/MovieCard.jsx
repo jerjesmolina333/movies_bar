@@ -4,6 +4,15 @@ function mensajeCl() {
 
 export function MovieCard({ movie }) {
   const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
+  // const movieCardPopup = {
+  //   title: "Detalles de película",
+  //   children: (
+  //     <MovieCard
+  //       movie={movies[currentIndex]}
+  //       handleOpenPopup={props.handleOpenPopup}
+  //     />
+  //   ),
+  // };
   return (
     <div className="cardContainer">
       <div className="movie__container">
