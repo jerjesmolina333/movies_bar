@@ -53,16 +53,18 @@ function NewsTicker() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // Usar RSS2JSON con el feed de Milenio
-        const RSS_URL = "https://www.milenio.com/rss/ultimo";
+        // Probar primero con El Universal (feed RSS mexicano más accesible)
+        const RSS_URL = "https://www.eluniversal.com.mx/rss.xml";
         const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(
           RSS_URL
-        )}&api_key=yzh8fhw7qxmq6bgp1tzdxbdxz8ozmfxbqh7zlcxg`;
+        )}&api_key=unep3UMC63hbjK242YQTiP`;
 
         const response = await fetch(API_URL);
 
         if (!response.ok) {
-          console.log("Respuesta no OK de la API, usando noticias demo");
+          console.log(
+            `Respuesta no OK de la API (${response.status} ${response.statusText}), usando noticias demo`
+          );
           setNews(demoNews);
           setLoading(false);
           return;

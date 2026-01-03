@@ -1,0 +1,88 @@
+.modal-overlay {
+  position: absolute;
+  width: 70vw;
+  height: 95vh;
+  margin: auto;
+  top: 2vh;
+  left: 10vw;
+  background: black;
+  border: 1px solid white;
+  border-radius: 5px;
+  opacity: 0.95;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end; /* Cambiado de center a flex-start */
+  padding-top: 10px; /* Añadido para dar espacio desde arriba */
+  gap: 5px;
+  z-index: 10;
+}
+.popup__container {
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid aqua; */
+  position: relative;
+  z-index: 5;
+}
+.popup__cerrar {
+  position: absolute;
+  width: 23px;
+  height: 23px;
+  right: 10px;
+  top: 0;
+  cursor: pointer;
+  z-index: 10;
+}
+.popup__cerrar:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+.movie__image-container {
+  margin: 0 20px 20px 20px;
+  text-align: center;
+  background-color: rgb(60, 58, 58);
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 5px;
+  z-index: 5;
+}
+.movie__info-container {
+  /* border: 1px solid aqua; */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 10px;
+  z-index: 5;
+}
+.movie__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  gap: 10px;
+  z-index: 5;
+}
+.movie__text {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+}
+
+.popup__heading {
+  font-family: Inter;
+  font-weight: bold;
+  font-size: 24px;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e68600, 0 0 40px #e68600,
+    0 0 50px #931de1, 0 0 60px #931de1, 0 0 70px #e60073;
+  color: white;
+  margin: 10px 0 20px 0;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}

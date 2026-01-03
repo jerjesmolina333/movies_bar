@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Home from "./components/Home/Home";
 import NewsTicker from "./components/NewsTicker/NewsTicker";
+import Popup from "./components/Popup/Popup";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
@@ -45,6 +46,11 @@ function App() {
             />
           </Routes>
           <Footer />
+          {popup && (
+            <Popup onClose={handleClosePopup} title={popup.title}>
+              {popup.children}
+            </Popup>
+          )}
         </div>
       </Router>
     </>

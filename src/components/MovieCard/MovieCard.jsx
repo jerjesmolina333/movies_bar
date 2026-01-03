@@ -1,18 +1,18 @@
-function mensajeCl() {
-  alert("Haz hecho click en la imagen");
-}
+import CardPopup from "../Popup/CardPopup";
+import Popup from "../Popup/Popup.jsx";
 
-export function MovieCard({ movie }) {
+export function MovieCard(props) {
+  const { cardKey, movie, handleOpenPopup } = props;
   const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
-  // const movieCardPopup = {
-  //   title: "Detalles de película",
-  //   children: (
-  //     <MovieCard
-  //       movie={movies[currentIndex]}
-  //       handleOpenPopup={props.handleOpenPopup}
-  //     />
-  //   ),
-  // };
+  const movieCardPopup = {
+    title: movie.title,
+    children: <CardPopup movie={movie} />,
+  };
+
+  function handleCardClick() {
+    // alert("Diste click en la película: " + movie.title);
+    handleOpenPopup(movieCardPopup);
+  }
   return (
     <div className="cardContainer">
       <div className="movie__container">
@@ -20,7 +20,7 @@ export function MovieCard({ movie }) {
           width={150}
           src={imageUrl}
           alt={movie.title}
-          onClick={() => mensajeCl()}
+          onClick={() => handleCardClick()}
         />
       </div>
       <li className="cardsList__item">
