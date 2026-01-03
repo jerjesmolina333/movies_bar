@@ -17,7 +17,7 @@ export default function Main(props) {
       .then((result) => result.json())
       .then((data) => {
         setMovies(data.results);
-        console.log("Películas cargadas: ", movies);
+        // console.log("Películas cargadas: ", movies);
       })
       .catch((error) => {
         console.error("Error al cargar películas:", error);

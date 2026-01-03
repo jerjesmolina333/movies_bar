@@ -53,24 +53,34 @@ function NewsTicker() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // Probar primero con El Universal (feed RSS mexicano más accesible)
-        const RSS_URL = "https://www.eluniversal.com.mx/rss.xml";
+        // Probar con múltiples feeds mexicanos hasta encontrar uno que funcione
+        const RSS_FEEDS = [
+          "https://aristeguinoticias.com/feed/",
+          "https://www.jornada.com.mx/rss/edicion.xml",
+          "https://www.eleconomista.com.mx/rss/economia.xml",
+        ];
+
+        let RSS_URL = RSS_FEEDS[1]; // La Jornada
         const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(
           RSS_URL
-        )}&api_key=unep3UMC63hbjK242YQTiP`;
+        )}`;
 
+        console.log("Intentando obtener noticias de:", RSS_URL);
         const response = await fetch(API_URL);
+
+        // Ver la respuesta completa incluso si no es OK
+        const data = await response.json();
+        console.log("Respuesta de la API:", data);
 
         if (!response.ok) {
           console.log(
-            `Respuesta no OK de la API (${response.status} ${response.statusText}), usando noticias demo`
+            `Respuesta no OK de la API (${response.status} ${response.statusText})`
           );
+          console.log("Mensaje de error:", data.message || "Sin mensaje");
           setNews(demoNews);
           setLoading(false);
           return;
         }
-
-        const data = await response.json();
 
         if (data.status === "ok" && data.items && data.items.length > 0) {
           const newsItems = data.items
