@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
-import Main from "./components/Main/Main";
-import Home from "./components/Home/Home";
-import NewsTicker from "./components/NewsTicker/NewsTicker";
-import Popup from "./components/Popup/Popup";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import Home from "../Home/Home";
+import NewsTicker from "../NewsTicker/NewsTicker";
+import Popup from "../Popup/Popup";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
