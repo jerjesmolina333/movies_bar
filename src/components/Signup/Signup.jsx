@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import btnCerrar from "../../../images//BotonCerrar.png";
+import btnCerrar from "../../../images/BotonCerrar.png";
 
 const Signup = ({ handleRegistration }) => {
   console.log("Signup - handleRegistration:");
@@ -99,7 +99,7 @@ const Signup = ({ handleRegistration }) => {
             type="submit"
             disabled={!isFormValid}
           >
-            Regístrate
+            Registro
           </button>
         </form>
         <div className="popup__footer">

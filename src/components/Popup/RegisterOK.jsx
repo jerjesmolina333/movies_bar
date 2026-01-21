@@ -1,9 +1,9 @@
-import imgNoOK from "../../../images/imgNoOK.png";
+import React from "react";
+import imgOK from "../../../images/ImgOK.png";
 import btnCerrar from "../../../images/BotonCerrar.png";
 
-const MensajeNoOK = (props) => {
+export default function RegisterOK(props) {
   function cierraVentanaBoton() {
-    alert("Cerrando ventana emergente");
     props.handleClosePopup();
   }
   return (
@@ -14,14 +14,12 @@ const MensajeNoOK = (props) => {
         alt="Imagen botón cerrar"
         onClick={() => cierraVentanaBoton()}
       />
-      <div>
-        <img className="popup__img" src={imgNoOK} alt="Imagen No OK" />
+      <div className="popup__image-container">
+        <img className="popup__img" src={imgOK} alt="Imagen OK" />
       </div>
       <div className="popup__message">
-        <p>Huy, algo salió mal. Por favor, inténtalo de nuevo.</p>
+        <h3>¡Correcto! Ya estás registrado</h3>
       </div>
     </div>
   );
-};
-
-export default MensajeNoOK;
+}

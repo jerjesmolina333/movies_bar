@@ -81,6 +81,21 @@
   align-items: center;
   cursor: pointer;
 }
+.popup__button:hover {
+  text-shadow:
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 30px #e68600,
+    0 0 40px #e68600,
+    0 0 50px #931de1,
+    0 0 60px #931de1,
+    0 0 70px #e60073;
+  color: white;
+  /* margin: 10px 0 20px 0;
+  text-align: center;
+  position: relative;
+  z-index: 10; */
+}
 .popup__button_disabled {
   background: gray;
   color: rgba(62, 58, 58, 0.541);
@@ -96,8 +111,8 @@
   text-align: center;
   font-family: Inter;
   font-weight: normal;
-  font-size: 10px;
-  color: white;
+  font-size: 18px;
+  color: black;
 }
 .popup__footer {
   height: 10%;
@@ -171,7 +186,7 @@
     0 0 50px #931de1,
     0 0 60px #931de1,
     0 0 70px #e60073;
-  color: white;
+  color: yellow;
   margin: 10px 0 20px 0;
   text-align: center;
   position: relative;

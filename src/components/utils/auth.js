@@ -6,9 +6,6 @@ export const BASE_URL =
 // y envía una solicitud POST al endpoint dado.
 export async function signup(name, password, email) {
   try {
-    console.log("🔵 Signup - URL:", `${BASE_URL}signup`);
-    // console.log("🔵 Signup - Data:", { name, email});
-
     const res = await fetch(`${BASE_URL}signup`, {
       method: "POST",
       headers: {
@@ -17,17 +14,13 @@ export async function signup(name, password, email) {
       body: JSON.stringify({ name, password, email }),
     });
 
-    console.log("🔵 Signup - Response status:", res.status);
-
     if (res.ok) {
       const data = await res.json();
-      console.log("✅ Signup - Success:", data);
       return data;
     } else {
       const errorData = await res
         .json()
         .catch(() => ({ message: res.statusText }));
-      console.error("❌ Signup - Error:", res.status, errorData);
       throw new Error(
         errorData.message || `Error ${res.status}: ${res.statusText}`,
       );
@@ -54,11 +47,14 @@ export async function signin(props) {
       body: JSON.stringify({ password, email }),
     });
 
-    console.log("🔵 Signin - Response status:", res.status);
+    // console.log("🔵 Signin - Response status:", res.status);
 
     if (res.ok) {
       const data = await res.json();
-      console.log("✅ Signin - Success. Data:", data);
+      // console.log("✅ Signin - Success. Data:", data);
+      // console.log("✅ Signin - Token:", data.token);
+      // console.log("✅ Signin - User ID:", data.userId);
+      // console.log("✅ Signin - User Name:", data.name);
       return data;
     } else {
       const errorData = await res

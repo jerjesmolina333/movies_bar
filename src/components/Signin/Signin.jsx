@@ -10,6 +10,9 @@ const Signin = (props) => {
     password: "",
   });
 
+  // Validar si todos los campos tienen valores
+  const isFormValid = data.email && data.password;
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevData) => ({
@@ -18,8 +21,6 @@ const Signin = (props) => {
     }));
   };
 
-  // handleSubmit evita el comportamiento del navegador por defecto y llama
-  // al controlador de inicio de sesión.
   const handleSubmit = async (e) => {
     e.preventDefault();
     props.handleLogin(data);
@@ -29,7 +30,7 @@ const Signin = (props) => {
     // <div className="page">
     <div className="modal-overlay">
       <img
-        className="popup__cerrar-overlay"
+        className="popup__cerrar"
         src={btnCerrar}
         alt="Imagen botón cerrar"
         onClick={() => navigate("/")}
@@ -77,7 +78,11 @@ const Signin = (props) => {
           ></span>
         </label>
 
-        <button className="popup__button popup__button_disabled" type="submit">
+        <button
+          className={`popup__button ${!isFormValid ? "popup__button_disabled" : ""}`}
+          type="submit"
+          disabled={!isFormValid}
+        >
           Inicia sesión
         </button>
       </form>

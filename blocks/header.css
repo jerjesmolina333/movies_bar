@@ -55,7 +55,7 @@
   right: 125px;
   font-family: Inter;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: 15px;
 }
 

@@ -9,7 +9,8 @@ import NewsTicker from "../NewsTicker/NewsTicker";
 import Popup from "../Popup/Popup";
 import * as auth from "../utils/auth.js";
 import { removeToken } from "../utils/token";
-import RegisterOK from "../../Popups/RegisterOK.jsx";
+import RegisterOK from "../Popup/RegisterOK.jsx";
+import MensajeNoOK from "../Popup/MensajeNoOK.jsx";
 import Signup from "../Signup/Signup.jsx";
 import Signin from "../Signin/Signin.jsx";
 import { setToken, getToken } from "../utils/token.js";
@@ -26,6 +27,21 @@ function AppContent() {
     handleOpenPopup({
       children: <RegisterOK handleClosePopup={handleClosePopup} />,
     });
+    setTimeout(() => {
+      handleClosePopup();
+    }, 4000);
+  }
+  function abreMensajeError(err) {
+    setPopup(null);
+    try {
+      handleOpenPopup({
+        children: (
+          <MensajeNoOK handleClosePopup={handleClosePopup} mensajeError={err} />
+        ),
+      });
+    } catch (error) {
+      console.error("❌ Error en abreMensajeError:", error);
+    }
   }
 
   function handleOpenPopup(popup) {
@@ -36,20 +52,22 @@ function AppContent() {
     setPopup(false);
   }
 
-  const handleRegistration = ({ name, password, email }) => {
+  const handleRegistration = async ({ name, password, email }) => {
     try {
-      alert("Registrando usuario...");
-      auth.signup(name, password, email).then(() => {
-        // Aquí abrir la ventana de éxito en el registro
-        abreRegExitoso();
-        // Esperar 2 segundos antes de navegar para que el usuario vea el popup
-        setTimeout(() => {
-          navigate("/signin");
-        }, 2000);
-      });
+      await auth.signup(name, password, email);
+      abreRegExitoso();
+      // Esperar 4 segundos antes de navegar para que el usuario vea el popup
+      setTimeout(() => {
+        navigate("/signin");
+      }, 4000);
     } catch (err) {
-      abreMensajeError();
-      console.error(err);
+      // console.error("Error en handleRegistration:", err);
+      const mensajeError = err.message || "Error desconocido";
+      console.log("Mensaje de error a mostrar:", mensajeError);
+      abreMensajeError(mensajeError);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     }
   };
 
@@ -59,15 +77,12 @@ function AppContent() {
     }
 
     try {
-      // console.log(
-      //   "🔵 App.jsx - Calling signin with abreMensajeError:",
-      //   typeof abreMensajeError
-      // );
       const data = await auth.signin({ email, password, abreMensajeError });
       const res = await auth.validaToken(data.token);
       // Guarda el token en el almacenamiento local:
       setToken(data.token);
-      setUserData(res.data);
+      const datosUs = await auth.getUserInfo(data.token);
+      setUserData(datosUs);
       setIsLoggedIn(true);
       navigate("/");
     } catch (err) {
