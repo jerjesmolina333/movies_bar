@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import logoMV from "../../../images/Movies-Bar.png";
 
-function Header() {
+function Header({ handleRegistration, isLoggedIn, userData, handleLogout }) {
   const navigate = useNavigate();
 
   return (
@@ -12,11 +12,27 @@ function Header() {
         alt="Logo"
         onClick={() => navigate("/home")}
       />
-
       <div className="header__line"></div>
-      <button className="header__button">
-        Suscribirse<a href=""></a>
-      </button>
+      {console.log("Header - isLoggedIn:", isLoggedIn)}
+      <div className="header__user-info">
+        {isLoggedIn ? (
+          <>
+            <span className="header__user-name">{userData.name}</span>
+            <button className="header__button" onClick={handleLogout}>
+              Cerrar Sesión
+            </button>
+          </>
+        ) : (
+          <button
+            className="header__button"
+            onClick={() => {
+              navigate("/signup");
+            }}
+          >
+            Suscribirse
+          </button>
+        )}
+      </div>
     </header>
   );
 }

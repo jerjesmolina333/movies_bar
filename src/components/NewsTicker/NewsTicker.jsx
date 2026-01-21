@@ -62,19 +62,17 @@ function NewsTicker() {
 
         let RSS_URL = RSS_FEEDS[1]; // La Jornada
         const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(
-          RSS_URL
+          RSS_URL,
         )}`;
 
-        console.log("Intentando obtener noticias de:", RSS_URL);
         const response = await fetch(API_URL);
 
         // Ver la respuesta completa incluso si no es OK
         const data = await response.json();
-        console.log("Respuesta de la API:", data);
 
         if (!response.ok) {
           console.log(
-            `Respuesta no OK de la API (${response.status} ${response.statusText})`
+            `Respuesta no OK de la API (${response.status} ${response.statusText})`,
           );
           console.log("Mensaje de error:", data.message || "Sin mensaje");
           setNews(demoNews);
@@ -93,7 +91,6 @@ function NewsTicker() {
 
           if (newsItems.length > 0) {
             setNews(newsItems);
-            console.log(`Carga exitosa: ${newsItems.length} noticias reales`);
           } else {
             console.log("Sin noticias válidas, usando demo");
             setNews(demoNews);
@@ -131,7 +128,7 @@ function NewsTicker() {
 
   return (
     <div className="news-ticker">
-      <div className="news-ticker__label">NOTICIAS:</div>
+      <div className="news-ticker__label">NOTICIAS: </div>
       <div className="news-ticker__wrapper">
         <div className="news-ticker__content">
           {news.concat(news).map((item, index) => (
