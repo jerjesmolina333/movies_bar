@@ -3,9 +3,6 @@ import logoMV from "../../../images/Movies-Bar.png";
 
 function Header({ isLoggedIn, userData, handleLogout }) {
   const navigate = useNavigate();
-  console.log("Header - userData:", userData);
-  console.log("Header - Nombre de usuario:", userData.name);
-  console.log("Header - Email:", userData.email);
 
   return (
     <header className="header">
@@ -20,6 +17,7 @@ function Header({ isLoggedIn, userData, handleLogout }) {
         {isLoggedIn ? (
           <>
             <span className="header__user-name">Usuario: {userData.name}</span>
+            <span className="header__user-message">Sin favoritos</span>
             <button className="header__button" onClick={handleLogout}>
               Cerrar Sesión
             </button>

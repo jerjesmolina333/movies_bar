@@ -17,7 +17,6 @@ export default function Main(props) {
       .then((result) => result.json())
       .then((data) => {
         setMovies(data.results);
-        // console.log("Películas cargadas: ", movies);
       })
       .catch((error) => {
         console.error("Error al cargar películas:", error);
@@ -26,13 +25,13 @@ export default function Main(props) {
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? movies.length - 1 : prevIndex - 1
+      prevIndex === 0 ? movies.length - 1 : prevIndex - 1,
     );
   };
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === movies.length - 1 ? 0 : prevIndex + 1
+      prevIndex === movies.length - 1 ? 0 : prevIndex + 1,
     );
   };
 
@@ -51,9 +50,11 @@ export default function Main(props) {
 
       <div className="carousel__content">
         <MovieCard
-          cardKey={movies[currentIndex].id}
           movie={movies[currentIndex]}
-          handleOpenPopup={props.handleOpenPopup}
+          // handleOpenPopup={props.handleOpenPopup}
+          handleOpenPopupMovie={props.handleOpenPopupMovie}
+          onclose={props.onclose}
+          userData={props.userData}
         />
       </div>
 

@@ -6,8 +6,9 @@
   justify-content: center;
   width: 100%;
   max-width: 600px;
+  height: 80%;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 10px 20px;
 }
 
 .carousel__content {
@@ -35,7 +36,9 @@
 .carousel__button:hover {
   background-color: rgba(59, 59, 59, 0.8);
   transform: scale(1.2);
-  transition: background-color 0.3s, transform 0.3s;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
 }
 
 .carousel__button--prev {
@@ -77,6 +80,7 @@
   justify-content: center;
 }
 .movie__container {
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;

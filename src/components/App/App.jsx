@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 import Footer from "../Footer/Footer";
@@ -16,11 +16,14 @@ import Signin from "../Signin/Signin.jsx";
 import { setToken, getToken } from "../utils/token.js";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import CardPopup from "../Popup/CardPopup.jsx";
 
 function AppContent() {
   const [popup, setPopup] = useState(false);
+  const [popupMovie, setPopupMovie] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const navigate = useNavigate();
 
   function abreRegExitoso() {
@@ -48,8 +51,17 @@ function AppContent() {
     setPopup(popup);
   }
 
+  function handleOpenPopupMovie(popup) {
+    // console.log("App.jsx - handleOpenPopupMovie - popup:", popup);
+    setPopupMovie(popup);
+  }
+
   function handleClosePopup() {
     setPopup(false);
+  }
+
+  function handleClosePopupMovie() {
+    setPopupMovie(false);
   }
 
   const handleRegistration = async ({ name, password, email }) => {
@@ -78,7 +90,7 @@ function AppContent() {
 
     try {
       const data = await auth.signin({ email, password, abreMensajeError });
-      const res = await auth.validaToken(data.token);
+      // const res = await auth.validaToken(data.token);
       // Guarda el token en el almacenamiento local:
       setToken(data.token);
       const datosUs = await auth.getUserInfo(data.token);
@@ -98,6 +110,31 @@ function AppContent() {
     navigate("/signin");
   }
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      const jwt = getToken();
+      if (!jwt) {
+        console.log("useEffect. No hay token");
+        setUserData({});
+        setIsCheckingAuth(false);
+        return;
+      }
+      try {
+        const res = await auth.getUserInfo(jwt);
+        const userData = res.data || res;
+        setUserData(userData);
+        setIsLoggedIn(true);
+        setIsCheckingAuth(false);
+      } catch (err) {
+        console.error("Error al validar token:", err);
+        setIsLoggedIn(false);
+        setIsCheckingAuth(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
   return (
     <div className="page">
       <Header
@@ -106,14 +143,18 @@ function AppContent() {
         userData={userData}
         handleLogout={handleLogout}
       />
-      <Main handleOpenPopup={handleOpenPopup} />
       <Routes>
         <Route
           path="/"
           element={
             <>
               <NewsTicker />
-              <Main handleOpenPopup={handleOpenPopup} />
+              <Main
+                handleOpenPopup={handleOpenPopup}
+                handleOpenPopupMovie={handleOpenPopupMovie}
+                onClose={handleClosePopup}
+                userData={userData}
+              />
             </>
           }
         />
@@ -158,6 +199,13 @@ function AppContent() {
         <Popup onClose={handleClosePopup} title={popup.title}>
           {popup.children}
         </Popup>
+      )}
+      {popupMovie && (
+        <CardPopup
+          movie={popupMovie.movie}
+          onClose={handleClosePopupMovie}
+          userData={userData}
+        />
       )}
     </div>
   );

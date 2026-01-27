@@ -1,23 +1,22 @@
 import CardPopup from "../Popup/CardPopup";
 import Popup from "../Popup/Popup.jsx";
 
-export function MovieCard(props) {
-  const { cardKey, movie, handleOpenPopup } = props;
+export function MovieCard({ movie, handleOpenPopupMovie, onClose, userData }) {
   const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
-  const movieCardPopup = {
-    title: movie.title,
-    children: <CardPopup movie={movie} />,
-  };
 
   function handleCardClick() {
-    // alert("Diste click en la película: " + movie.title);
-    handleOpenPopup(movieCardPopup);
+    const movieCardPopup = {
+      movie: movie,
+      onClose: onClose,
+      userData: userData,
+    };
+    handleOpenPopupMovie(movieCardPopup);
   }
   return (
     <div className="cardContainer">
       <div className="movie__container">
         <img
-          width={150}
+          width={200}
           src={imageUrl}
           alt={movie.title}
           onClick={() => handleCardClick()}

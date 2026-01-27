@@ -1,6 +1,5 @@
 // Especifica la BASE_URL para la API.
-export const BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "https://api.jerjesm.online/";
+export const BASE_URL = import.meta.env.VITE_API_BASE_URL || "/api/auth/";
 
 // La función de registro acepta los datos necesarios como argumentos,
 // y envía una solicitud POST al endpoint dado.
@@ -51,10 +50,6 @@ export async function signin(props) {
 
     if (res.ok) {
       const data = await res.json();
-      // console.log("✅ Signin - Success. Data:", data);
-      // console.log("✅ Signin - Token:", data.token);
-      // console.log("✅ Signin - User ID:", data.userId);
-      // console.log("✅ Signin - User Name:", data.name);
       return data;
     } else {
       const errorData = await res
@@ -63,7 +58,6 @@ export async function signin(props) {
       console.error("❌ Signin - Error:", res.status, errorData);
 
       // Llamar al callback de error si existe
-      console.log("🟡 Verificando abreMensajeError...");
       console.log(
         "🟡 props.abreMensajeError existe:",
         !!props.abreMensajeError,
