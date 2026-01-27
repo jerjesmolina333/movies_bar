@@ -21,6 +21,30 @@ export class Api {
         return Promise.reject(`Error: ${error}`);
       });
   }
+
+  getUserMovies({ userId, token }) {
+    return fetch(`https://api.jerjesm.online/movies/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log("✅ getUserMovies response:", data);
+        return data;
+      })
+      .catch((error) => {
+        console.error("❌ Error al cargar películas del usuario:", error);
+        throw error;
+      });
+  }
+
   getInfoMovie(movie_id) {
     return fetch(`https://api.themoviedb.org/3/movie/${movie_id}`, {
       headers: {

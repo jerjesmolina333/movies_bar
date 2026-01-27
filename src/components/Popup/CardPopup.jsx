@@ -41,7 +41,7 @@ export default function CardPopup(props) {
     };
     return fetch(tempURL, objParams)
       .then(function (res) {
-        console.log("✅ insertMovie response status:", res.status);
+        // console.log("✅ insertMovie response status:", res.status);
         if (!res.ok) {
           return res.text().then((text) => {
             console.error("❌ Error response:", text);
@@ -51,12 +51,12 @@ export default function CardPopup(props) {
         const contentType = res.headers.get("content-type") || "";
         if (contentType.includes("application/json")) {
           return res.json().then((jsonData) => {
-            console.log("✅ insertMovie success response:", jsonData);
+            // console.log("✅ insertMovie success response:", jsonData);
             return jsonData;
           });
         }
         return res.text().then((text) => {
-          console.log("⚠️ Response is not JSON:", text);
+          // console.log("⚠️ Response is not JSON:", text);
           throw new Error(`Respuesta no JSON del servidor: ${text}`);
         });
       })
@@ -79,8 +79,6 @@ export default function CardPopup(props) {
 
   return (
     <>
-      {/* {console.log("CardPopup props.movie:", props.movie)}
-      {console.log("CardPopup props.id:", props.id)} */}
       <div className="movie_overlay">
         <img
           className="popup__cerrar"

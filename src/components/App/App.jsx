@@ -17,6 +17,7 @@ import { setToken, getToken } from "../utils/token.js";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CardPopup from "../Popup/CardPopup.jsx";
+import { Api } from "../Api/Api.js";
 
 function AppContent() {
   const [popup, setPopup] = useState(false);
@@ -25,6 +26,7 @@ function AppContent() {
   const [userData, setUserData] = useState({});
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const navigate = useNavigate();
+  const api = new Api();
 
   function abreRegExitoso() {
     handleOpenPopup({
@@ -124,6 +126,12 @@ function AppContent() {
         const userData = res.data || res;
         setUserData(userData);
         setIsLoggedIn(true);
+        console.log("useEffect: se van a buscar las películas del usuario...");
+        const moviesList = await api.getUserMovies({
+          userId: userData._id,
+          token: jwt,
+        });
+        console.log("Películas del usuario cargadas:", moviesList);
         setIsCheckingAuth(false);
       } catch (err) {
         console.error("Error al validar token:", err);
