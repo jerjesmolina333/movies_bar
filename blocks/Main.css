@@ -22,12 +22,12 @@
   position: absolute;
   top: 50%;
   background-color: rgba(0, 0, 0, 0.5);
-  color: white;
+  /* color: white; */
   border: none;
-  font-size: 30px;
+  /* font-size: 30px; */
   padding: 15px 20px;
   cursor: pointer;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   transition: background-color 0.3s;
   z-index: 10;
 }
@@ -79,6 +79,7 @@
   justify-content: center;
 }
 .movie__container {
+  /* border: 2px solid red; */
   border-radius: 10px;
   display: flex;
   justify-content: center;
@@ -88,7 +89,7 @@
 .movie__title {
   font-family: Inter;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 28px;
   line-height: 1.1;
   letter-spacing: 0;
   text-align: center;
@@ -97,8 +98,8 @@
   list-style: none;
 }
 .movie__image {
-  width: 150px;
-  height: auto;
+  width: 200px;
+  height: 300px;
   border-radius: 10px;
   background-color: azure;
   align-content: center;
@@ -109,6 +110,9 @@
     font-size: 12px;
     padding: 0;
   }
+  .movie__title {
+    font-size: 22px;
+  }
   .carousel__content {
     width: 50%;
   }
@@ -118,5 +122,77 @@
   }
   .carousel__indicators {
     gap: 4px;
+  }
+}
+@media screen AND (max-width: 520px) {
+  .carousel__button {
+    width: 25px;
+    height: 25px;
+  }
+  .movie__title {
+    font-size: 12px;
+  }
+  .carousel__button--next {
+    right: -40px;
+  }
+  .carousel__button--prev {
+    left: -40px;
+  }
+
+  .carousel__content {
+    width: 40%;
+  }
+  .carousel {
+    width: 40%;
+    max-width: 300px;
+  }
+  .carousel__indicators {
+    gap: 2px;
+  }
+}
+
+@media screen AND (max-width: 350px) {
+  .carousel__button {
+    width: 15px;
+    height: 15px;
+  }
+  .movie__title {
+    font-size: 10px;
+  }
+  .movie__image {
+    width: 150px;
+    height: 200px;
+  }
+  .carousel__button--next {
+    right: -40px;
+  }
+  .carousel__button--prev {
+    left: -40px;
+  }
+
+  .carousel__content {
+    width: 40%;
+  }
+  .carousel {
+    width: 40%;
+    max-width: 300px;
+  }
+  .carousel__indicators {
+    gap: 2px;
+  }
+}
+@media screen AND (max-width: 250px) {
+  .movie__image {
+    width: 100px;
+    height: 150px;
+  }
+  .movie__title {
+    font-size: 8px;
+  }
+  .carousel__button--next {
+    right: -8px;
+  }
+  .carousel__button--prev {
+    left: -8px;
   }
 }

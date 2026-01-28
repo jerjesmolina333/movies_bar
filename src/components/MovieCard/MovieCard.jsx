@@ -16,7 +16,7 @@ export function MovieCard({ movie, handleOpenPopupMovie, onClose, userData }) {
     <div className="cardContainer">
       <div className="movie__container">
         <img
-          width={200}
+          className="movie__image"
           src={imageUrl}
           alt={movie.title}
           onClick={() => handleCardClick()}
