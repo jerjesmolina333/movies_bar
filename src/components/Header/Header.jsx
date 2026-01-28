@@ -9,7 +9,6 @@ function Header({
   handleOpenPopupFavs,
 }) {
   const navigate = useNavigate();
-
   return (
     <header className="header">
       <img
@@ -23,7 +22,7 @@ function Header({
         {isLoggedIn ? (
           <>
             <span className="header__user-name">Usuario: {userData.name}</span>
-            {moviesList ? (
+            {moviesList.length > 0 ? (
               <button
                 className="header__favs-button"
                 onClick={handleOpenPopupFavs}

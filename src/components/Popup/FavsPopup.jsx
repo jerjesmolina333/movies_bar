@@ -1,9 +1,7 @@
 import { MovieFavCard } from "../movieFavCard/movieFavCard";
 import btnCerrar from "../../../images/BotonCerrar.png";
 
-export default function FavsPopup({ moviesList, onClose }) {
-  console.log("moviesList en FavsPopup:", moviesList);
-
+export default function FavsPopup({ moviesList, onClose, handleDeleteMovie }) {
   function cierraVentanaBoton() {
     if (onClose) {
       onClose();
@@ -23,10 +21,12 @@ export default function FavsPopup({ moviesList, onClose }) {
       </div>
       {moviesList?.map((movie) => (
         <MovieFavCard
-          key={movie._id || movie.id}
+          key={movie._id}
+          id={movie._id}
           title={movie.title}
           posterPath={movie.posterPath}
           onClose={onClose}
+          handleDeleteMovie={handleDeleteMovie}
         />
       ))}
     </div>

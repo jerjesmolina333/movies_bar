@@ -34,9 +34,9 @@ export async function signup(name, password, email) {
 export async function signin(props) {
   try {
     const { password, email } = props;
-    console.log("🔵 Signin - URL:", `${BASE_URL}signin`);
-    console.log("🔵 Signin - Email:", email);
-    console.log("🔵 Signin - abreMensajeError:", typeof props.abreMensajeError);
+    // console.log("🔵 Signin - URL:", `${BASE_URL}signin`);
+    // console.log("🔵 Signin - Email:", email);
+    // console.log("🔵 Signin - abreMensajeError:", typeof props.abreMensajeError);
 
     const res = await fetch(`${BASE_URL}signin`, {
       method: "POST",

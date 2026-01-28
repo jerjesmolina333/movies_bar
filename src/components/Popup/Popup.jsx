@@ -12,16 +12,16 @@ export default function Popup(props) {
   return (
     <>
       <div className="modal-overlay">
-        <div className="popup__container">
-          <img
-            className="popup__cerrar"
-            src={btnCerrar}
-            alt="Imagen botón cerrar"
-            onClick={() => cierraVentanaBoton()}
-          />
-          {title && <p className="popup__heading">{title}</p>}
-          {children}
-        </div>
+        {/* <div className="popup__container"> */}
+        <img
+          className="popup__cerrar"
+          src={btnCerrar}
+          alt="Imagen botón cerrar"
+          onClick={() => cierraVentanaBoton()}
+        />
+        {title && <p className="popup__heading">{title}</p>}
+        {children}
+        {/* </div> */}
       </div>
     </>
   );

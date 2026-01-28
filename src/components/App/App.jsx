@@ -90,6 +90,19 @@ function AppContent() {
       }, 2000);
     }
   };
+  const handleDeleteMovie = async (movieId) => {
+    console;
+    const token = getToken();
+    try {
+      await api.deleteMovie({ movieId, token });
+      const updatedMoviesList = moviesList.filter(
+        (movie) => movie._id !== movieId,
+      );
+      setMoviesList(updatedMoviesList);
+    } catch (err) {
+      console.error("❌ App.jsx - Error en handleDeleteMovie:", err);
+    }
+  };
 
   const handleLogin = async ({ email, password }) => {
     if (!email || !password) {
@@ -98,8 +111,6 @@ function AppContent() {
 
     try {
       const data = await auth.signin({ email, password, abreMensajeError });
-      // const res = await auth.validaToken(data.token);
-      // Guarda el token en el almacenamiento local:
       setToken(data.token);
       const datosUs = await auth.getUserInfo(data.token);
       setUserData(datosUs);
@@ -135,7 +146,11 @@ function AppContent() {
           userId: userData._id,
           token: jwt,
         });
-        setMoviesList(movList);
+        console.log("===App.jsx - useEffect - movList:", movList);
+        console.log("=Número de películas favoritas:", movList.length);
+        if (movList && movList.length > 0) {
+          setMoviesList(movList);
+        }
         setIsCheckingAuth(false);
       } catch (err) {
         console.error("Error al validar token:", err);
@@ -150,6 +165,21 @@ function AppContent() {
   function handleOpenPopupFavs() {
     setPopupFavs(true);
   }
+
+  const handleMovieAdded = async () => {
+    try {
+      const jwt = getToken();
+      const movList = await api.getUserMovies({
+        userId: userData._id,
+        token: jwt,
+      });
+      if (movList && movList.length > 0) {
+        setMoviesList(movList);
+      }
+    } catch (error) {
+      console.error("Error al actualizar lista de películas:", error);
+    }
+  };
 
   return (
     <div className="page">
@@ -214,7 +244,11 @@ function AppContent() {
       </Routes>
       <Footer />
       {popupFavs && (
-        <FavsPopup moviesList={moviesList} onClose={handleClosePopupFavs} />
+        <FavsPopup
+          moviesList={moviesList}
+          onClose={handleClosePopupFavs}
+          handleDeleteMovie={handleDeleteMovie}
+        />
       )}
       {popup && (
         <Popup onClose={handleClosePopup} title={popup.title}>
@@ -226,6 +260,7 @@ function AppContent() {
           movie={popupMovie.movie}
           onClose={handleClosePopupMovie}
           userData={userData}
+          onMovieAdded={handleMovieAdded}
         />
       )}
     </div>

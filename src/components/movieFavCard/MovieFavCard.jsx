@@ -3,7 +3,10 @@ export function MovieFavCard(props) {
   const imageUrl = "https://image.tmdb.org/t/p/w300" + props.posterPath;
 
   function handleDeleteClick() {
-    alert("Eliminar película de favoritos: " + props.title);
+    alert("Eliminar película de favoritos: " + props.id);
+    if (props.handleDeleteMovie) {
+      props.handleDeleteMovie(props.id);
+    }
   }
   return (
     // <div className="cardContainer">

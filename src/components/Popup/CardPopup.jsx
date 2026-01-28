@@ -6,7 +6,7 @@ import { Api } from "../Api/Api.js";
 
 export default function CardPopup(props) {
   const api = new Api();
-  const { movie, onClose, userData } = props;
+  const { movie, onClose, userData, onMovieAdded } = props;
 
   function cierraVentanaBoton() {
     if (onClose) {
@@ -67,14 +67,20 @@ export default function CardPopup(props) {
   }
 
   async function handleLike(movie_id) {
-    await api
-      .getInfoMovie(movie_id)
-      .then((data) => {
-        insertMovie({ data, userData });
-      })
-      .catch((error) => {
-        console.error("Error al obtener información de la película:", error);
-      });
+    try {
+      const data = await api.getInfoMovie(movie_id);
+      await insertMovie({ data, userData });
+
+      // Actualizar la lista de películas
+      if (onMovieAdded) {
+        await onMovieAdded();
+      }
+
+      alert("¡Película agregada a favoritos!");
+    } catch (error) {
+      console.error("Error al obtener información de la película:", error);
+      alert("Error al agregar película a favoritos");
+    }
   }
 
   return (
