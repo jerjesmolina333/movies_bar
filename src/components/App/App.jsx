@@ -17,13 +17,16 @@ import { setToken, getToken } from "../utils/token.js";
 
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import CardPopup from "../Popup/CardPopup.jsx";
+import FavsPopup from "../Popup/FavsPopup.jsx";
 import { Api } from "../Api/Api.js";
 
 function AppContent() {
   const [popup, setPopup] = useState(false);
   const [popupMovie, setPopupMovie] = useState(false);
+  const [popupFavs, setPopupFavs] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState({});
+  const [moviesList, setMoviesList] = useState([]);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const navigate = useNavigate();
   const api = new Api();
@@ -62,6 +65,9 @@ function AppContent() {
     setPopup(false);
   }
 
+  function handleClosePopupFavs() {
+    setPopupFavs(false);
+  }
   function handleClosePopupMovie() {
     setPopupMovie(false);
   }
@@ -116,7 +122,6 @@ function AppContent() {
     const checkAuth = async () => {
       const jwt = getToken();
       if (!jwt) {
-        console.log("useEffect. No hay token");
         setUserData({});
         setIsCheckingAuth(false);
         return;
@@ -126,12 +131,11 @@ function AppContent() {
         const userData = res.data || res;
         setUserData(userData);
         setIsLoggedIn(true);
-        console.log("useEffect: se van a buscar las películas del usuario...");
-        const moviesList = await api.getUserMovies({
+        const movList = await api.getUserMovies({
           userId: userData._id,
           token: jwt,
         });
-        console.log("Películas del usuario cargadas:", moviesList);
+        setMoviesList(movList);
         setIsCheckingAuth(false);
       } catch (err) {
         console.error("Error al validar token:", err);
@@ -143,6 +147,10 @@ function AppContent() {
     checkAuth();
   }, []);
 
+  function handleOpenPopupFavs() {
+    setPopupFavs(true);
+  }
+
   return (
     <div className="page">
       <Header
@@ -150,6 +158,8 @@ function AppContent() {
         isLoggedIn={isLoggedIn}
         userData={userData}
         handleLogout={handleLogout}
+        moviesList={moviesList}
+        handleOpenPopupFavs={handleOpenPopupFavs}
       />
       <Routes>
         <Route
@@ -203,6 +213,9 @@ function AppContent() {
         />
       </Routes>
       <Footer />
+      {popupFavs && (
+        <FavsPopup moviesList={moviesList} onClose={handleClosePopupFavs} />
+      )}
       {popup && (
         <Popup onClose={handleClosePopup} title={popup.title}>
           {popup.children}

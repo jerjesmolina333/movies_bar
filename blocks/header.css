@@ -35,6 +35,23 @@
   letter-spacing: 0;
   text-align: center;
 }
+.header__favs-button {
+  position: relative;
+  top: 10px;
+  /* right: 80px; */
+  padding: 10px 20px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-align: center;
+}
 .header__title {
   font-family: "IstokWeb", sans-serif;
   font-size: 18px;
@@ -59,7 +76,7 @@
 }
 
 .header__user-info {
-  border: 1px solid antiquewhite;
+  /* border: 1px solid antiquewhite; */
   height: 40px;
   width: 50vw;
   position: absolute;

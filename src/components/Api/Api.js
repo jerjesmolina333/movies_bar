@@ -36,7 +36,6 @@ export class Api {
         return res.json();
       })
       .then((data) => {
-        console.log("✅ getUserMovies response:", data);
         return data;
       })
       .catch((error) => {

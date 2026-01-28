@@ -1,0 +1,75 @@
+.favs__container {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: black;
+  border: 1px solid yellow;
+  border-radius: 20px;
+  width: 80vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 10px;
+  overflow-y: auto;
+  z-index: 100;
+}
+.favs__header {
+  width: 100%;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-align: center;
+  text-shadow:
+    0 0 10px #fff,
+    0 0 20px #fff,
+    0 0 30px #e68600,
+    0 0 40px #e68600,
+    0 0 50px #931de1,
+    0 0 60px #931de1,
+    0 0 70px #e60073;
+  color: yellow;
+}
+.favsPopup__cerrar {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 2px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.movieFavCard__delete-image {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 1px;
+  cursor: pointer;
+}
+.movieFavCard__container {
+  border: 2px solid white;
+  border-radius: 7px;
+  width: 200px;
+  height: 340px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.movieFavCard__title {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-align: center;
+}

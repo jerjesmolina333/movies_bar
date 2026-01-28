@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 // import movies from "../../movies.json";
 import { MovieCard } from "../MovieCard/MovieCard";
+import flechaIzq from "../../../images/FlechaIzq.gif";
+import flechaDer from "../../../images/FlechaDer.gif";
 
 export default function Main(props) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,13 +43,13 @@ export default function Main(props) {
 
   return (
     <div className="carousel">
-      <button
+      <img
         className="carousel__button carousel__button--prev"
+        src={flechaIzq}
+        alt="Flecha izquierda"
         onClick={prevSlide}
-      >
-        ←
-      </button>
-
+      />
+      ←
       <div className="carousel__content">
         <MovieCard
           movie={movies[currentIndex]}
@@ -57,14 +59,13 @@ export default function Main(props) {
           userData={props.userData}
         />
       </div>
-
-      <button
+      <img
         className="carousel__button carousel__button--next"
+        src={flechaDer}
+        alt="Flecha derecha"
         onClick={nextSlide}
-      >
-        →
-      </button>
-
+      />
+      →
       <div className="carousel__indicators">
         {movies.map((_, index) => (
           <button
