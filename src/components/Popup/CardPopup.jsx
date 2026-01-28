@@ -14,13 +14,10 @@ export default function CardPopup(props) {
     }
   }
 
-  function insertMovie({ data, userData }) {
-    // console.log("===insertMovie userData:", userData);
-    // console.log("===insertMovie userData._id:", userData._id);
-    // console.log("===insertMovie data:", data);
+  function insertMovie({ data }) {
+
     const tempURL = "https://api.jerjesm.online/movies/";
-    // const tempURL = "https://jerjesm.online/movies/";
-    // const tempURL = "/api-movies/movies";
+
 
     const jwt = getToken();
     const jsonParam = JSON.stringify({
@@ -41,7 +38,6 @@ export default function CardPopup(props) {
     };
     return fetch(tempURL, objParams)
       .then(function (res) {
-        // console.log("✅ insertMovie response status:", res.status);
         if (!res.ok) {
           return res.text().then((text) => {
             console.error("❌ Error response:", text);
@@ -51,12 +47,10 @@ export default function CardPopup(props) {
         const contentType = res.headers.get("content-type") || "";
         if (contentType.includes("application/json")) {
           return res.json().then((jsonData) => {
-            // console.log("✅ insertMovie success response:", jsonData);
             return jsonData;
           });
         }
         return res.text().then((text) => {
-          // console.log("⚠️ Response is not JSON:", text);
           throw new Error(`Respuesta no JSON del servidor: ${text}`);
         });
       })

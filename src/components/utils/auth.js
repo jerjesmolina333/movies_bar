@@ -34,9 +34,6 @@ export async function signup(name, password, email) {
 export async function signin(props) {
   try {
     const { password, email } = props;
-    // console.log("🔵 Signin - URL:", `${BASE_URL}signin`);
-    // console.log("🔵 Signin - Email:", email);
-    // console.log("🔵 Signin - abreMensajeError:", typeof props.abreMensajeError);
 
     const res = await fetch(`${BASE_URL}signin`, {
       method: "POST",
@@ -46,7 +43,6 @@ export async function signin(props) {
       body: JSON.stringify({ password, email }),
     });
 
-    // console.log("🔵 Signin - Response status:", res.status);
 
     if (res.ok) {
       const data = await res.json();
@@ -71,7 +67,6 @@ export async function signin(props) {
         props.abreMensajeError &&
         typeof props.abreMensajeError === "function"
       ) {
-        console.log("✅ Ejecutando abreMensajeError...");
         try {
           props.abreMensajeError();
           console.log("✅ abreMensajeError ejecutado exitosamente");
@@ -93,15 +88,12 @@ export async function signin(props) {
     console.error("❌ Signin - Exception:", err);
 
     // Llamar al callback de error en caso de excepción
-    console.log("🟡 En catch - Verificando abreMensajeError...");
     if (
       props?.abreMensajeError &&
       typeof props.abreMensajeError === "function"
     ) {
-      console.log("✅ En catch - Ejecutando abreMensajeError...");
       try {
         props.abreMensajeError(err.message || "Error al identificar usuario");
-        console.log("✅ En catch - abreMensajeError ejecutado");
       } catch (callbackError) {
         console.error(
           "❌ En catch - Error al ejecutar abreMensajeError:",
@@ -115,7 +107,6 @@ export async function signin(props) {
 }
 
 export async function getUserInfo(token) {
-  // console.log("🔵 getUserInfo - URL:", `${BASE_URL}users/me`);
   const res = await fetch(`${BASE_URL}users/me`, {
     method: "GET",
     headers: {

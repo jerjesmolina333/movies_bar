@@ -24,7 +24,6 @@ export class Api {
 
   getUserMovies({ userId, token }) {
     const url = `https://api.jerjesm.online/movies/owner/${userId}`;
-    console.log("Api.js - getUserMovies - URL:", url);
     return fetch(url, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -32,7 +31,6 @@ export class Api {
       },
     })
       .then((res) => {
-        console.log("Api.js - getUserMovies - status:", res.status);
         if (!res.ok) {
           return res.text().then((text) => {
             throw new Error(`HTTP ${res.status}: ${text}`);
@@ -41,7 +39,6 @@ export class Api {
         return res.json();
       })
       .then((data) => {
-        console.log("✅ getUserMovies success:", data);
         return data;
       })
       .catch((error) => {
@@ -51,7 +48,6 @@ export class Api {
   }
 
   deleteMovie({ movieId, token }) {
-    console.log("Api.js - deleteMovie - movieId:", movieId);
     return fetch(`https://api.jerjesm.online/movies/${movieId}`, {
       method: "DELETE",
       headers: {

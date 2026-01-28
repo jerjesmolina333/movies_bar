@@ -53,7 +53,6 @@ export default function Main(props) {
       <div className="carousel__content">
         <MovieCard
           movie={movies[currentIndex]}
-          // handleOpenPopup={props.handleOpenPopup}
           handleOpenPopupMovie={props.handleOpenPopupMovie}
           onclose={props.onclose}
           userData={props.userData}

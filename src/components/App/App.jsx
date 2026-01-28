@@ -57,7 +57,6 @@ function AppContent() {
   }
 
   function handleOpenPopupMovie(popup) {
-    // console.log("App.jsx - handleOpenPopupMovie - popup:", popup);
     setPopupMovie(popup);
   }
 
@@ -81,9 +80,7 @@ function AppContent() {
         navigate("/signin");
       }, 4000);
     } catch (err) {
-      // console.error("Error en handleRegistration:", err);
       const mensajeError = err.message || "Error desconocido";
-      console.log("Mensaje de error a mostrar:", mensajeError);
       abreMensajeError(mensajeError);
       setTimeout(() => {
         navigate("/");
@@ -146,8 +143,6 @@ function AppContent() {
           userId: userData._id,
           token: jwt,
         });
-        console.log("===App.jsx - useEffect - movList:", movList);
-        console.log("=Número de películas favoritas:", movList.length);
         if (movList && movList.length > 0) {
           setMoviesList(movList);
         }
